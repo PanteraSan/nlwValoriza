@@ -1,6 +1,10 @@
 # Nlw Valoriza
 
-## Regras
+## Sobre o projeto:
+
+API Rest para cadastro de elogios e feedbacks positivos entre colaboradores de um time.
+
+## Regras de negócio:
 
 - Cadastro de usuário
 
@@ -10,11 +14,11 @@
 
 - Cadastro de tag
 
-[ ] Não é permitido cadastrar mais de uma tag com o mesmo nome
+[x] Não é permitido cadastrar mais de uma tag com o mesmo nome
 
-[ ] Não é permitido cadastrar tag sem nome
+[x] Não é permitido cadastrar tag sem nome
 
-[ ] Não é permitido o cadastro o cadastro por usuários que não sejam admin
+[x] Não é permitido o cadastro o cadastro por usuários que não sejam admin
 
 - Cadastro de elogios
 
