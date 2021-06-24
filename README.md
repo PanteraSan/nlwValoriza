@@ -22,8 +22,8 @@ API Rest para cadastro de elogios e feedbacks positivos entre colaboradores de u
 
 - Cadastro de elogios
 
-[ ] Não é permitido um usuário cadastrar um elogio para si
+[x] Não é permitido um usuário cadastrar um elogio para si
 
-[ ] Não é permitido cadastrar elogios para usuários invalidos
+[x] Não é permitido cadastrar elogios para usuários invalidos
 
 [ ] O usuário precisa estar autenticado na aplicação

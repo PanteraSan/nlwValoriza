@@ -1,16 +1,18 @@
 import { getCustomRepository } from 'typeorm'
 import { UserRepositories } from "../repositories/UserRepositories"
 import { ErrorHandler } from '../handlers/ErrorHandler'
+import { hash } from 'bcryptjs'
 
 interface IUserRequest {
  name: string;
  email: string;
  admin?: boolean
+ password: string;
 }
 
 class CreateUserService {
 
- async execute({ name, email, admin }: IUserRequest) {
+ async execute({ name, email, admin = false, password }: IUserRequest) {
   const userRepositories = getCustomRepository(UserRepositories)
 
   //check if user email is valid
@@ -43,11 +45,14 @@ class CreateUserService {
    throw new ErrorHandler(err)
   }
 
+  const passwordHash = await hash(password, 8)
+
   //if nothing bad happens, finish to create user and save on db
   const user = userRepositories.create({
    name,
    email, 
-   admin
+   admin,
+   password: passwordHash 
   })
 
   await userRepositories.save(user)
