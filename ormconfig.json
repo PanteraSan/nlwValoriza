@@ -7,5 +7,5 @@
   "migrationsDir": "src/database/migrations",
   "entitiesDir": "src/entities"
  },
- "logging": true
+ "logging": false
 }

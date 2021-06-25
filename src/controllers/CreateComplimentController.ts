@@ -6,13 +6,19 @@ class CreateComplimentController {
  async handle(request: Request, response: Response) {
 
    //getting properties of request body
-   const { tagId, userSenderId, userReceiverId, message } = request.body
+   const { tagId, userReceiverId, message } = request.body
+   const { userId } = request
 
    //starting class to make use of its methods
    const createComplimentService = new CreateComplimentService()
  
    //starting a compliment to store the return
-   const compliment = await createComplimentService.execute({ tagId, userSenderId, userReceiverId, message })
+   const compliment = await createComplimentService.execute({ 
+     tagId, 
+     userSenderId: userId, 
+     userReceiverId, 
+     message 
+    })
  
    //returning user to upper layer
    return response.json(compliment)
