@@ -4,26 +4,46 @@
 
 API Rest para cadastro de elogios e feedbacks positivos entre colaboradores de um time.
 
-## Regras de negócio:
+## Extra miles (y)
 
-- Cadastro de usuário
+[ **X** ] Usuário que recebe um elogio é notificado via email<br> 
+[ **X** ] ErrorHandler para jogar erros customizados<br>
+[ - ] Criar uma rota para filtrar elogios por tag usando routeParams<br>
+[ - ] Possibilidade de enviar "Likes" para os elogios
 
-[x] Não é permitido cadastrar mais de um usuário com o mesmo email
 
-[x] Não é permitido cadastrar usuário sem email
+## EmailHandler:
+**Essa classe ainda não tem implementada nenhum sistema de criptografia ou segurança. Atenção para usar apenas um email de uso de testes e que não forneça dados sensíveis.**
 
-- Cadastro de tag
+Por questões de segurança, o email e senha estão em branco na classe 'EmailHandler.ts'. É necessário preencher os dados do objeto emailConfig com o email e senha para configurar o email remetente.<br>
 
-[x] Não é permitido cadastrar mais de uma tag com o mesmo nome
+**Exemplo:**
+```ts
+emailConfig = {
+  host: 'smtp.gmail.com',
+  port: 587, 
+  secure: false,
+  auth: {
+   user: 'seuEmail@email.com',
+   pass: 'suaSenha'
+  }
+ }
+ ```
+## ErrorHandler
 
-[x] Não é permitido cadastrar tag sem nome
+Classe que extende a classe ```Error``` e que permite customizar um erro para jogar para camadas superiores da aplicação tratar.
+**Exemplo:**
 
-[x] Não é permitido o cadastro o cadastro por usuários que não sejam admin
+```ts
+//throw error object to upper layer with custom parameters
+const err = {
+ name: 'ReceiverDontExistsError',
+ message: "User receiver doesn't exists",
+ statusCode: 419,
+ description: "User receiver doesn't exists. Try to compliment an existant person next time."
+}
 
-- Cadastro de elogios
-
-[x] Não é permitido um usuário cadastrar um elogio para si
-
-[x] Não é permitido cadastrar elogios para usuários invalidos
-
-[ ] O usuário precisa estar autenticado na aplicação
+throw new ErrorHandler(err)
+```
+É possível enriquecer mais ainda o erro retornado, adicionando mais propriedades opcionais dentro da interface ```IErrorHandler```, sem medo de quebrar a aplicação.
+Se uma propriedade obrigatória for adicionada, é necessário refatorar as funções que a utilizam para começar a enviar o novo parâmetro também.

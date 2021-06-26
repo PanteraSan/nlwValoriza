@@ -2,6 +2,7 @@ import { getCustomRepository } from 'typeorm'
 import { ComplimentRepositories } from "../repositories/ComplimentRepositories"
 import { UserRepositories } from '../repositories/UserRepositories'
 import { ErrorHandler} from './../handlers/ErrorHandler' 
+import { EmailHandler } from '../handlers/EmailHandler'
 
 interface IComplimentRequest {
  tagId: string;
@@ -48,6 +49,23 @@ class CreateComplimentService {
   const compliment = complimentRepositories.create({ tagId, userReceiverId, userSenderId, message }) 
 
   await complimentRepositories.save(compliment)
+
+  //send email to complimented user
+  const { email } = await userRepositories.findOne(userReceiverId)
+  
+  const emailHandler = new EmailHandler()
+
+  const emailToSend = {
+   from: 'trabalhoredeszabbix@gmail.com',
+   to: email,
+   subject: 'Elogio recebido =)',
+   text: `
+   Parabéns, você acabou de receber um elogio de um colega de time!
+   O elogio dele foi: "${message}".
+   `
+  }
+
+  const returnedEmail = emailHandler.send(emailToSend)
 
   return compliment
  }

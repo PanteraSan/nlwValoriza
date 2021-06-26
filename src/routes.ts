@@ -10,6 +10,8 @@ import { ListUserReceiveComplimentsController } from './controllers/ListUserRece
 import { ListTagsController } from './controllers/ListTagsController'
 import { ListUsersController } from './controllers/ListUsersController'
 
+import nodemailer from 'nodemailer'
+
 const router = Router()
 
 const createUserController = new CreateUserController()
