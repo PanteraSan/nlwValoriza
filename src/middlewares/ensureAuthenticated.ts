@@ -31,8 +31,10 @@ export function ensureAuthenticated(
 
   try {
 
+   //check if token is valid
    const { sub } = verify(token, 'bbeb2a51754fc61b9896207ef3b0dc65') as IPayload
 
+   //recover user info
    request.userId = sub
    
    return next()
@@ -50,10 +52,5 @@ export function ensureAuthenticated(
     throw new ErrorHandler(err)
    } else return response.status(500).end()
   } 
-  
-  //check if token is valid
-  
-  
-  //recover user info
   
 }
