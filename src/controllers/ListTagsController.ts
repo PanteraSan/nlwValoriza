@@ -12,5 +12,4 @@ class ListTagsController {
  }
 }
 
-
 export { ListTagsController }

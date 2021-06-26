@@ -21,5 +21,4 @@ class ListTagsService {
  }
 }
 
-
 export { ListTagsService }

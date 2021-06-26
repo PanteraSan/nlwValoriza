@@ -14,8 +14,8 @@ class EmailHandler {
   port: 587, 
   secure: false,
   auth: {
-   user: 'trabalhoredeszabbix@gmail.com',
-   pass: 'amxfn4f9'
+   user: 'seuEmailAqui@email.com',
+   pass: 'suaSenha'
   }
  }
 
